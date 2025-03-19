@@ -1,8 +1,7 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Camera, X, ImagePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/components/ui/use-toast";
 
 interface CameraCaptureProps {
   onCapture: (imageFile: File) => void;

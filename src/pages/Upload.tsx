@@ -11,7 +11,7 @@ import {
   SelectValue 
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FileUpload from "@/components/FileUpload";

@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/components/ui/use-toast";
 
 const Login = () => {
   const navigate = useNavigate();

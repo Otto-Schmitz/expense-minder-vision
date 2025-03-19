@@ -1,6 +1,5 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/components/ui/use-toast";
 
 interface User {
   id: string;
@@ -24,7 +23,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for saved user in localStorage
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
@@ -32,26 +30,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(false);
   }, []);
 
-  // Mocked login function - would connect to backend in real app
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // For demo, accept any non-empty email/password
       if (!email || !password) {
         throw new Error('Please provide both email and password');
       }
       
-      // Create mock user
       const mockUser = {
         id: 'usr_' + Math.random().toString(36).substr(2, 9),
         name: email.split('@')[0],
         email
       };
       
-      // Save to local storage
       localStorage.setItem('user', JSON.stringify(mockUser));
       setUser(mockUser);
       toast.success("Successfully logged in");
@@ -66,22 +59,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signup = async (name: string, email: string, password: string) => {
     setLoading(true);
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Validate
       if (!name || !email || !password) {
         throw new Error('Please fill in all fields');
       }
       
-      // Create mock user
       const mockUser = {
         id: 'usr_' + Math.random().toString(36).substr(2, 9),
         name,
         email
       };
       
-      // Save to local storage
       localStorage.setItem('user', JSON.stringify(mockUser));
       setUser(mockUser);
       toast.success("Account created successfully");

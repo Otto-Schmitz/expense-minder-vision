@@ -34,7 +34,7 @@ const Upload = () => {
   const [note, setNote] = useState("");
 
   const handleFileSelect = (selectedFile: File) => {
-    console.log("File selected:", selectedFile.name);
+    console.log("File selected:", selectedFile.name, "Size:", selectedFile.size, "Type:", selectedFile.type);
     setFile(selectedFile);
     processFile(selectedFile);
   };
@@ -44,6 +44,7 @@ const Upload = () => {
     try {
       console.log("Processing file:", selectedFile.name);
       const result = await mockProcessInvoice(selectedFile);
+      console.log("Processing result:", result);
       setExpense(result);
       
       // Pre-fill form with the detected data
@@ -54,8 +55,8 @@ const Upload = () => {
       
       toast.success("Invoice processed successfully!");
     } catch (error) {
-      toast.error("Failed to process invoice");
       console.error("Processing error:", error);
+      toast.error("Failed to process invoice");
     } finally {
       setProcessing(false);
     }
@@ -66,6 +67,15 @@ const Upload = () => {
     setSubmitting(true);
     
     try {
+      console.log("Submitting expense:", {
+        amount,
+        merchant,
+        category,
+        date,
+        note,
+        fileAttached: !!file
+      });
+      
       // Simulate submission delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
@@ -81,8 +91,8 @@ const Upload = () => {
       setNote("");
       
     } catch (error) {
-      toast.error("Failed to save expense");
       console.error("Submission error:", error);
+      toast.error("Failed to save expense");
     } finally {
       setSubmitting(false);
     }

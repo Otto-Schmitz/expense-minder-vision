@@ -17,30 +17,66 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
 
   const startCapture = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" }
-      });
+      console.log("Attempting to access camera...");
+      
+      // Explicitly define video constraints for better compatibility
+      const constraints = {
+        video: { 
+          facingMode: "environment",
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        }
+      };
+      
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      console.log("Camera access granted", stream);
       
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        // Wait for video to be ready before setting state
+        videoRef.current.onloadedmetadata = () => {
+          setIsCapturing(true);
+          console.log("Video stream loaded");
+        };
         streamRef.current = stream;
-        setIsCapturing(true);
       }
     } catch (error) {
-      toast.error("Could not access camera. Please check camera permissions.");
-      console.error("Camera error:", error);
+      console.error("Camera access error:", error);
+      
+      // More descriptive error messages based on error type
+      if (error instanceof DOMException) {
+        if (error.name === 'NotAllowedError') {
+          toast.error("Camera access denied. Please allow camera permissions in your browser settings.");
+        } else if (error.name === 'NotFoundError') {
+          toast.error("No camera found on this device.");
+        } else if (error.name === 'NotReadableError') {
+          toast.error("Camera is already in use by another application.");
+        } else {
+          toast.error(`Camera error: ${error.name}`);
+        }
+      } else {
+        toast.error("Could not access camera. Please check camera permissions.");
+      }
     }
   };
 
   const stopCapture = () => {
+    console.log("Stopping camera capture");
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current.getTracks().forEach(track => {
+        console.log("Stopping track:", track.kind);
+        track.stop();
+      });
       streamRef.current = null;
+    }
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
     }
     setIsCapturing(false);
   };
 
   const captureImage = () => {
+    console.log("Capturing image...");
     if (videoRef.current && canvasRef.current) {
       const video = videoRef.current;
       const canvas = canvasRef.current;
@@ -48,6 +84,8 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
       // Set canvas dimensions to match video
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
+      
+      console.log("Canvas dimensions:", canvas.width, canvas.height);
       
       // Draw video frame to canvas
       const context = canvas.getContext("2d");
@@ -61,8 +99,12 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
         // Convert to file and pass to parent
         canvas.toBlob((blob) => {
           if (blob) {
+            console.log("Image captured, blob size:", blob.size);
             const file = new File([blob], "invoice-capture.jpg", { type: "image/jpeg" });
             onCapture(file);
+          } else {
+            console.error("Failed to create image blob");
+            toast.error("Failed to capture image");
           }
         }, "image/jpeg", 0.9);
         
@@ -133,6 +175,7 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
             ref={videoRef}
             autoPlay
             playsInline
+            muted
             className="w-full h-auto"
           />
           <div className="absolute bottom-4 inset-x-0 flex justify-center space-x-4">

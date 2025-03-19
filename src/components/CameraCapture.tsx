@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Camera, X, ImagePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
         setIsCapturing(true);
       }
     } catch (error) {
-      toast.error("Could not access camera");
+      toast.error("Could not access camera. Please check camera permissions.");
       console.error("Camera error:", error);
     }
   };
@@ -107,11 +108,8 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
   return (
     <div className="w-full">
       {!isCapturing ? (
-        <div
-          className="border-2 border-dashed rounded-xl p-8 hover:bg-gray-50 transition-all"
-          onClick={startCapture}
-        >
-          <div className="flex flex-col items-center justify-center gap-4 cursor-pointer">
+        <div className="border-2 border-dashed rounded-xl p-8 hover:bg-gray-50 transition-all">
+          <div className="flex flex-col items-center justify-center gap-4">
             <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary">
               <Camera size={24} />
             </div>
@@ -121,7 +119,12 @@ const CameraCapture = ({ onCapture }: CameraCaptureProps) => {
                 Position the receipt within the frame
               </p>
             </div>
-            <Button type="button">Access Camera</Button>
+            <Button 
+              type="button"
+              onClick={startCapture}
+            >
+              Access Camera
+            </Button>
           </div>
         </div>
       ) : (

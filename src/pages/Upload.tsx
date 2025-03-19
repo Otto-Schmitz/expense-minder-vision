@@ -34,6 +34,7 @@ const Upload = () => {
   const [note, setNote] = useState("");
 
   const handleFileSelect = (selectedFile: File) => {
+    console.log("File selected:", selectedFile.name);
     setFile(selectedFile);
     processFile(selectedFile);
   };
@@ -41,6 +42,7 @@ const Upload = () => {
   const processFile = async (selectedFile: File) => {
     setProcessing(true);
     try {
+      console.log("Processing file:", selectedFile.name);
       const result = await mockProcessInvoice(selectedFile);
       setExpense(result);
       

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { FileUp, File, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -79,19 +80,22 @@ const FileUpload = ({ onFileSelect }: FileUploadProps) => {
               </p>
             </div>
             <div className="text-center mt-2">
-              <label htmlFor="file-upload">
-                <Button type="button" variant="outline" className="relative">
-                  <span>Browse Files</span>
-                  <input
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    accept=".pdf,.jpg,.jpeg,.png"
-                    className="sr-only"
-                    onChange={handleFileChange}
-                  />
-                </Button>
-              </label>
+              <Button 
+                type="button" 
+                variant="outline" 
+                className="relative"
+                onClick={() => document.getElementById('file-upload')?.click()}
+              >
+                Browse Files
+                <input
+                  id="file-upload"
+                  name="file-upload"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="sr-only"
+                  onChange={handleFileChange}
+                />
+              </Button>
             </div>
           </div>
         </div>

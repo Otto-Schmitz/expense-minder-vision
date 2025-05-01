@@ -69,5 +69,27 @@
   "plans.buttons.skip": "Skip for now",
   
   "plans.errors.selectPlan": "Please select a plan to continue",
-  "plans.success.selected": "Plan selected!"
+  "plans.success.selected": "Plan selected!",
+  
+  "login.signInToAccount": "Sign in to your account",
+  "login.email": "Email",
+  "login.emailPlaceholder": "you@example.com",
+  "login.password": "Password",
+  "login.passwordPlaceholder": "••••••••",
+  "login.forgotPassword": "Forgot password?",
+  "login.signingIn": "Signing in...",
+  "login.noAccount": "Don't have an account?",
+  "login.sidebarTitle": "Manage your expenses with ease",
+  "login.sidebarDescription": "Simplify your financial tracking with our AI-powered invoice scanning and intuitive dashboard.",
+  
+  "signup.createAccount": "Create an account",
+  "signup.getStarted": "Get started with ExpenseMinder",
+  "signup.fullName": "Full Name",
+  "signup.fullNamePlaceholder": "John Doe",
+  "signup.passwordRequirement": "Must be at least 6 characters",
+  "signup.creatingAccount": "Creating account...",
+  "signup.createAccountButton": "Create account",
+  "signup.haveAccount": "Already have an account?",
+  "signup.sidebarTitle": "Smart expense tracking at your fingertips",
+  "signup.sidebarDescription": "Easily upload invoices, scan receipts with your camera, and gain insights into your spending patterns."
 }

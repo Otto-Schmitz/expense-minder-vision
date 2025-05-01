@@ -69,5 +69,27 @@
   "plans.buttons.skip": "Pular por enquanto",
   
   "plans.errors.selectPlan": "Por favor, selecione um plano para continuar",
-  "plans.success.selected": "Plano selecionado!"
+  "plans.success.selected": "Plano selecionado!",
+  
+  "login.signInToAccount": "Entre na sua conta",
+  "login.email": "Email",
+  "login.emailPlaceholder": "voce@exemplo.com",
+  "login.password": "Senha",
+  "login.passwordPlaceholder": "••••••••",
+  "login.forgotPassword": "Esqueceu a senha?",
+  "login.signingIn": "Entrando...",
+  "login.noAccount": "Não tem uma conta?",
+  "login.sidebarTitle": "Gerencie suas despesas com facilidade",
+  "login.sidebarDescription": "Simplifique seu rastreamento financeiro com nossa digitalização de faturas alimentada por IA e painel intuitivo.",
+  
+  "signup.createAccount": "Criar uma conta",
+  "signup.getStarted": "Comece com ExpenseMinder",
+  "signup.fullName": "Nome Completo",
+  "signup.fullNamePlaceholder": "João Silva",
+  "signup.passwordRequirement": "Deve ter pelo menos 6 caracteres",
+  "signup.creatingAccount": "Criando conta...",
+  "signup.createAccountButton": "Criar conta",
+  "signup.haveAccount": "Já tem uma conta?",
+  "signup.sidebarTitle": "Rastreamento inteligente de despesas ao seu alcance",
+  "signup.sidebarDescription": "Envie faturas facilmente, escaneie recibos com sua câmera e obtenha insights sobre seus padrões de gastos."
 }

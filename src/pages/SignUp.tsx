@@ -1,13 +1,16 @@
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { signup, loading } = useAuth();
+  const { t } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,26 +39,26 @@ const SignUp = () => {
               className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
               <ArrowLeft size={16} className="mr-1" />
-              Back to home
+              {t("home.hero.getStarted")}
             </Link>
           </div>
           
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">Create an account</h2>
-            <p className="text-gray-600 mt-2">Get started with ExpenseMinder</p>
+            <h2 className="text-3xl font-bold">{t("signup.createAccount")}</h2>
+            <p className="text-gray-600 mt-2">{t("signup.getStarted")}</p>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-6 animate-slide-in">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium">
-                Full Name
+                {t("signup.fullName")}
               </label>
               <Input
                 id="name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="John Doe"
+                placeholder={t("signup.fullNamePlaceholder")}
                 required
                 className="h-12"
               />
@@ -63,14 +66,14 @@ const SignUp = () => {
             
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
-                Email
+                {t("login.email")}
               </label>
               <Input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder={t("login.emailPlaceholder")}
                 required
                 className="h-12"
               />
@@ -78,32 +81,32 @@ const SignUp = () => {
             
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium">
-                Password
+                {t("login.password")}
               </label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder={t("login.passwordPlaceholder")}
                 required
                 minLength={6}
                 className="h-12"
               />
               <p className="text-xs text-gray-500">
-                Must be at least 6 characters
+                {t("signup.passwordRequirement")}
               </p>
             </div>
             
             <Button type="submit" className="w-full h-12" disabled={loading}>
-              {loading ? "Creating account..." : "Create account"}
+              {loading ? t("signup.creatingAccount") : t("signup.createAccountButton")}
             </Button>
             
             <div className="text-center text-sm">
               <p className="text-gray-600">
-                Already have an account?{" "}
+                {t("signup.haveAccount")}{" "}
                 <Link to="/login" className="text-primary hover:text-primary/90 font-medium">
-                  Sign in
+                  {t("nav.signIn")}
                 </Link>
               </p>
             </div>
@@ -116,9 +119,9 @@ const SignUp = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-blue-700 opacity-90"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-12">
           <div className="w-full max-w-md text-center">
-            <h3 className="text-2xl font-bold mb-4">Smart expense tracking at your fingertips</h3>
+            <h3 className="text-2xl font-bold mb-4">{t("signup.sidebarTitle")}</h3>
             <p className="text-white/80">
-              Easily upload invoices, scan receipts with your camera, and gain insights into your spending patterns.
+              {t("signup.sidebarDescription")}
             </p>
           </div>
         </div>

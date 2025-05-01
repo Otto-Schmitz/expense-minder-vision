@@ -1,0 +1,40 @@
+
+{
+  "home.hero.tagline": "Effortless Expense Tracking",
+  "home.hero.title": "Manage expenses with AI-powered precision",
+  "home.hero.description": "Track, analyze, and organize your expenses using intelligent invoice scanning. Get valuable insights into your spending habits.",
+  "home.hero.getStarted": "Get Started",
+  "home.hero.viewDashboard": "View Dashboard",
+  "home.hero.signIn": "Sign In",
+  "home.hero.uploadInvoice": "Upload Invoice",
+  
+  "home.features.title": "Key Features",
+  "home.features.subtitle": "Smart expense management made simple",
+  "home.features.description": "Our intelligent platform simplifies financial tracking and provides insightful analytics.",
+  
+  "home.features.aiScanning.title": "AI-Powered Scanning",
+  "home.features.aiScanning.description": "Instantly extract and categorize data from receipts and invoices with advanced AI technology.",
+  
+  "home.features.dashboard.title": "Real-Time Dashboard",
+  "home.features.dashboard.description": "Visualize your spending patterns and financial health with interactive charts and reports.",
+  
+  "home.features.organization.title": "Simplified Organization",
+  "home.features.organization.description": "Keep all your financial documents organized in one secure, easily accessible location.",
+  
+  "home.cta.title": "Ready to transform your expense management?",
+  "home.cta.description": "Join thousands of users who have simplified their financial tracking.",
+  "home.cta.button": "Get Started Today",
+  
+  "nav.signIn": "Sign in",
+  "nav.signUp": "Sign up",
+  "nav.dashboard": "Dashboard",
+  "nav.upload": "Upload",
+  "nav.logout": "Log out",
+  
+  "footer.tagline": "Simplifying expense management",
+  "footer.privacy": "Privacy",
+  "footer.terms": "Terms",
+  
+  "language.english": "English",
+  "language.portuguese": "Portuguese"
+}

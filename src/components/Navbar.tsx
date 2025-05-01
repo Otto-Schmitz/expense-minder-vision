@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { ChevronDown, Menu, X, Home, FileUp, LayoutDashboard, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +17,7 @@ import {
 
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -34,8 +37,8 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks = [
-    { title: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
-    { title: "Upload", path: "/upload", icon: FileUp },
+    { title: t("nav.dashboard"), path: "/dashboard", icon: LayoutDashboard },
+    { title: t("nav.upload"), path: "/upload", icon: FileUp },
   ];
 
   return (
@@ -54,6 +57,10 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
+          <div className="mr-4">
+            <LanguageSelector />
+          </div>
+          
           {isAuthenticated && (
             <div className="flex items-center space-x-1 mr-4">
               {navLinks.map((link) => {
@@ -96,13 +103,13 @@ const Navbar = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/dashboard" className="cursor-pointer w-full flex items-center gap-2">
                     <LayoutDashboard size={16} />
-                    <span>Dashboard</span>
+                    <span>{t("nav.dashboard")}</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/upload" className="cursor-pointer w-full flex items-center gap-2">
                     <FileUp size={16} />
-                    <span>Upload Invoice</span>
+                    <span>{t("nav.upload")}</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
@@ -111,17 +118,17 @@ const Navbar = () => {
                   className="text-red-500 cursor-pointer focus:text-red-500 flex items-center gap-2"
                 >
                   <LogOut size={16} />
-                  <span>Log out</span>
+                  <span>{t("nav.logout")}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <div className="flex items-center space-x-2">
               <Button variant="ghost" asChild>
-                <Link to="/login">Sign in</Link>
+                <Link to="/login">{t("nav.signIn")}</Link>
               </Button>
               <Button asChild>
-                <Link to="/signup">Sign up</Link>
+                <Link to="/signup">{t("nav.signUp")}</Link>
               </Button>
             </div>
           )}
@@ -140,6 +147,10 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-3">
+            <div className="py-2">
+              <LanguageSelector />
+            </div>
+            
             {isAuthenticated ? (
               <>
                 <div className="p-3 bg-gray-50 rounded-md flex items-center space-x-3">
@@ -160,7 +171,7 @@ const Navbar = () => {
                   }`}
                 >
                   <LayoutDashboard size={20} />
-                  <span>Dashboard</span>
+                  <span>{t("nav.dashboard")}</span>
                 </Link>
                 <Link
                   to="/upload"
@@ -171,14 +182,14 @@ const Navbar = () => {
                   }`}
                 >
                   <FileUp size={20} />
-                  <span>Upload Invoice</span>
+                  <span>{t("nav.upload")}</span>
                 </Link>
                 <button
                   onClick={logout}
                   className="px-3 py-3 rounded-md flex items-center space-x-3 text-red-500 hover:bg-red-50"
                 >
                   <LogOut size={20} />
-                  <span>Log out</span>
+                  <span>{t("nav.logout")}</span>
                 </button>
               </>
             ) : (
@@ -198,13 +209,13 @@ const Navbar = () => {
                   to="/login"
                   className="px-3 py-3 rounded-md flex items-center justify-center bg-gray-100 hover:bg-gray-200"
                 >
-                  Sign in
+                  {t("nav.signIn")}
                 </Link>
                 <Link
                   to="/signup"
                   className="px-3 py-3 rounded-md flex items-center justify-center bg-primary text-white hover:bg-primary/90"
                 >
-                  Sign up
+                  {t("nav.signUp")}
                 </Link>
               </>
             )}

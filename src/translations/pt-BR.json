@@ -1,0 +1,40 @@
+
+{
+  "home.hero.tagline": "Rastreamento de Despesas sem Esforço",
+  "home.hero.title": "Gerencie despesas com precisão alimentada por IA",
+  "home.hero.description": "Rastreie, analise e organize suas despesas usando digitalização inteligente de faturas. Obtenha insights valiosos sobre seus hábitos de gastos.",
+  "home.hero.getStarted": "Começar",
+  "home.hero.viewDashboard": "Ver Painel",
+  "home.hero.signIn": "Entrar",
+  "home.hero.uploadInvoice": "Enviar Fatura",
+  
+  "home.features.title": "Recursos Principais",
+  "home.features.subtitle": "Gerenciamento inteligente de despesas simplificado",
+  "home.features.description": "Nossa plataforma inteligente simplifica o rastreamento financeiro e fornece análises perspicazes.",
+  
+  "home.features.aiScanning.title": "Digitalização Alimentada por IA",
+  "home.features.aiScanning.description": "Extraia e categorize instantaneamente dados de recibos e faturas com tecnologia de IA avançada.",
+  
+  "home.features.dashboard.title": "Painel em Tempo Real",
+  "home.features.dashboard.description": "Visualize seus padrões de gastos e saúde financeira com gráficos e relatórios interativos.",
+  
+  "home.features.organization.title": "Organização Simplificada",
+  "home.features.organization.description": "Mantenha todos os seus documentos financeiros organizados em um local seguro e facilmente acessível.",
+  
+  "home.cta.title": "Pronto para transformar sua gestão de despesas?",
+  "home.cta.description": "Junte-se a milhares de usuários que simplificaram seu rastreamento financeiro.",
+  "home.cta.button": "Comece Hoje",
+  
+  "nav.signIn": "Entrar",
+  "nav.signUp": "Cadastrar",
+  "nav.dashboard": "Painel",
+  "nav.upload": "Enviar",
+  "nav.logout": "Sair",
+  
+  "footer.tagline": "Simplificando a gestão de despesas",
+  "footer.privacy": "Privacidade",
+  "footer.terms": "Termos",
+  
+  "language.english": "Inglês",
+  "language.portuguese": "Português"
+}

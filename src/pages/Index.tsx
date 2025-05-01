@@ -2,12 +2,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowRight, CheckCircle, CreditCard, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 
 const Index = () => {
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const [showAnimation, setShowAnimation] = useState(false);
   
   // Initialize animation after a small delay for smoother appearance
@@ -35,25 +37,25 @@ const Index = () => {
             <div className="max-w-3xl mx-auto text-center">
               <div className={`transition-all duration-700 ${showAnimation ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
                 <span className="inline-block py-1 px-3 mb-4 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  Effortless Expense Tracking
+                  {t("home.hero.tagline")}
                 </span>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                  Manage expenses with AI-powered precision
+                  {t("home.hero.title")}
                 </h1>
                 <p className="text-lg md:text-xl text-gray-600 mb-8 md:mb-10">
-                  Track, analyze, and organize your expenses using intelligent invoice scanning. Get valuable insights into your spending habits.
+                  {t("home.hero.description")}
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" asChild className="h-12 px-8 btn-hover">
                     <Link to={isAuthenticated ? "/dashboard" : "/signup"}>
-                      {isAuthenticated ? "View Dashboard" : "Get Started"} 
+                      {isAuthenticated ? t("home.hero.viewDashboard") : t("home.hero.getStarted")} 
                       <ArrowRight className="ml-2" size={18} />
                     </Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild className="h-12 px-8 btn-hover">
                     <Link to="/login">
-                      {isAuthenticated ? "Upload Invoice" : "Sign In"}
+                      {isAuthenticated ? t("home.hero.uploadInvoice") : t("home.hero.signIn")}
                     </Link>
                   </Button>
                 </div>
@@ -67,13 +69,13 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <span className="inline-block py-1 px-3 mb-4 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                Key Features
+                {t("home.features.title")}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Smart expense management made simple
+                {t("home.features.subtitle")}
               </h2>
               <p className="text-lg text-gray-600">
-                Our intelligent platform simplifies financial tracking and provides insightful analytics.
+                {t("home.features.description")}
               </p>
             </div>
             
@@ -82,9 +84,9 @@ const Index = () => {
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-5">
                   <CreditCard size={24} />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">AI-Powered Scanning</h3>
+                <h3 className="text-xl font-semibold mb-3">{t("home.features.aiScanning.title")}</h3>
                 <p className="text-gray-600">
-                  Instantly extract and categorize data from receipts and invoices with advanced AI technology.
+                  {t("home.features.aiScanning.description")}
                 </p>
               </div>
               
@@ -92,9 +94,9 @@ const Index = () => {
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-5">
                   <Zap size={24} />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Real-Time Dashboard</h3>
+                <h3 className="text-xl font-semibold mb-3">{t("home.features.dashboard.title")}</h3>
                 <p className="text-gray-600">
-                  Visualize your spending patterns and financial health with interactive charts and reports.
+                  {t("home.features.dashboard.description")}
                 </p>
               </div>
               
@@ -102,9 +104,9 @@ const Index = () => {
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-5">
                   <CheckCircle size={24} />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Simplified Organization</h3>
+                <h3 className="text-xl font-semibold mb-3">{t("home.features.organization.title")}</h3>
                 <p className="text-gray-600">
-                  Keep all your financial documents organized in one secure, easily accessible location.
+                  {t("home.features.organization.description")}
                 </p>
               </div>
             </div>
@@ -116,14 +118,14 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto glass-card rounded-xl p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                Ready to transform your expense management?
+                {t("home.cta.title")}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Join thousands of users who have simplified their financial tracking.
+                {t("home.cta.description")}
               </p>
               <Button size="lg" asChild className="h-12 px-8 btn-hover">
                 <Link to={isAuthenticated ? "/dashboard" : "/signup"}>
-                  {isAuthenticated ? "View Dashboard" : "Get Started Today"}
+                  {isAuthenticated ? t("home.hero.viewDashboard") : t("home.cta.button")}
                 </Link>
               </Button>
             </div>
@@ -143,22 +145,22 @@ const Index = () => {
                 <span className="font-medium text-xl">ExpenseMinder</span>
               </div>
               <p className="text-sm text-gray-500 mt-2">
-                Simplifying expense management
+                {t("footer.tagline")}
               </p>
             </div>
             
             <div className="flex space-x-6">
               <Link to="/login" className="text-gray-600 hover:text-primary transition-colors">
-                Sign In
+                {t("nav.signIn")}
               </Link>
               <Link to="/signup" className="text-gray-600 hover:text-primary transition-colors">
-                Sign Up
+                {t("nav.signUp")}
               </Link>
               <a href="#" className="text-gray-600 hover:text-primary transition-colors">
-                Privacy
+                {t("footer.privacy")}
               </a>
               <a href="#" className="text-gray-600 hover:text-primary transition-colors">
-                Terms
+                {t("footer.terms")}
               </a>
             </div>
           </div>

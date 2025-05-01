@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -18,7 +17,8 @@ const SignUp = () => {
     
     try {
       await signup(name, email, password);
-      navigate("/dashboard");
+      // Redirect to payment plans page instead of dashboard
+      navigate("/payment-plans");
     } catch (error) {
       // Error is handled in the auth context
       console.error("Signup error:", error);

@@ -36,5 +36,38 @@
   "footer.terms": "Terms",
   
   "language.english": "English",
-  "language.portuguese": "Portuguese"
+  "language.portuguese": "Portuguese",
+  
+  "plans.header.title": "Choose Your Plan",
+  "plans.header.subtitle": "Select the plan that best fits your needs to get started with ExpenseMinder",
+  "plans.recommended": "Recommended",
+  
+  "plans.basic.title": "Basic",
+  "plans.basic.description": "Good for individuals tracking personal expenses",
+  "plans.basic.features.uploads": "10 uploads per month",
+  "plans.basic.features.reports": "Basic expense reports",
+  "plans.basic.features.export": "CSV export",
+  
+  "plans.pro.title": "Pro",
+  "plans.pro.description": "Perfect for freelancers and professionals",
+  "plans.pro.features.uploads": "Unlimited uploads",
+  "plans.pro.features.analytics": "Advanced analytics",
+  "plans.pro.features.categories": "Custom categories",
+  "plans.pro.features.export": "PDF & Excel export",
+  
+  "plans.enterprise.title": "Enterprise",
+  "plans.enterprise.description": "For teams and businesses",
+  "plans.enterprise.features.users": "Multiple user accounts",
+  "plans.enterprise.features.integration": "Accounting software integration",
+  "plans.enterprise.features.support": "Priority support",
+  "plans.enterprise.features.api": "API access",
+  "plans.enterprise.features.customization": "Advanced customization",
+  
+  "plans.buttons.select": "Select Plan",
+  "plans.buttons.selected": "Selected",
+  "plans.buttons.continue": "Continue",
+  "plans.buttons.skip": "Skip for now",
+  
+  "plans.errors.selectPlan": "Please select a plan to continue",
+  "plans.success.selected": "Plan selected!"
 }

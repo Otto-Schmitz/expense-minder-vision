@@ -1,4 +1,3 @@
-
 {
   "home.hero.tagline": "Rastreamento de Despesas sem Esforço",
   "home.hero.title": "Gerencie despesas com precisão alimentada por IA",
@@ -91,5 +90,14 @@
   "signup.createAccountButton": "Criar conta",
   "signup.haveAccount": "Já tem uma conta?",
   "signup.sidebarTitle": "Rastreamento inteligente de despesas ao seu alcance",
-  "signup.sidebarDescription": "Envie faturas facilmente, escaneie recibos com sua câmera e obtenha insights sobre seus padrões de gastos."
+  "signup.sidebarDescription": "Envie faturas facilmente, escaneie recibos com sua câmera e obtenha insights sobre seus padrões de gastos.",
+  
+  "signup.errors.nameRequired": "Nome completo é obrigatório",
+  "signup.errors.nameTooShort": "O nome deve ter pelo menos 2 caracteres",
+  "signup.errors.invalidEmail": "Por favor, insira um email válido",
+  "signup.errors.passwordLength": "A senha deve ter pelo menos 6 caracteres",
+  "signup.successTitle": "Conta criada!",
+  "signup.successMessage": "Sua conta foi criada com sucesso.",
+  "signup.errorTitle": "Falha no cadastro",
+  "signup.errorMessage": "Ocorreu um erro durante o cadastro. Por favor, tente novamente."
 }

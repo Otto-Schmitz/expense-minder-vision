@@ -89,10 +89,10 @@ const Navbar = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex items-center gap-2">
                   <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    {user?.name.charAt(0).toUpperCase()}
+                    {user?.username.charAt(0).toUpperCase()}
                   </div>
                   <span className="hidden sm:inline-block max-w-[100px] truncate">
-                    {user?.name}
+                    {user?.username}
                   </span>
                   <ChevronDown size={16} />
                 </Button>
@@ -155,10 +155,10 @@ const Navbar = () => {
               <>
                 <div className="p-3 bg-gray-50 rounded-md flex items-center space-x-3">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    {user?.name.charAt(0).toUpperCase()}
+                    {user?.username.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <p className="font-medium">{user?.name}</p>
+                    <p className="font-medium">{user?.username}</p>
                     <p className="text-sm text-gray-500">{user?.email}</p>
                   </div>
                 </div>

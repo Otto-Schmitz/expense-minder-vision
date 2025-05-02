@@ -5,9 +5,10 @@ import { ArrowLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { toast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const SignUp = () => {
+  const { toast } = useToast();
   const navigate = useNavigate();
   const { signup, loading } = useAuth();
   const { t } = useLanguage();
@@ -28,7 +29,7 @@ const SignUp = () => {
     if (!name.trim()) {
       newErrors.name = t("signup.errors.nameRequired");
       valid = false;
-    } else if (name.length < 3) {
+    } else if (name.length < 2) {
       newErrors.name = t("signup.errors.nameTooShort");
       valid = false;
     }
@@ -65,13 +66,12 @@ const SignUp = () => {
       toast({
         title: t("signup.successTitle"),
         description: t("signup.successMessage"),
-        variant: "default",
       });
       navigate("/payment-plans");
     } catch (error) {
       toast({
         title: t("signup.errorTitle"),
-        description: error.message || t("signup.errorMessage"),
+        description: t("signup.errorMessage"),
         variant: "destructive",
       });
     }
@@ -195,7 +195,7 @@ const SignUp = () => {
       </div>
       
       {/* Right Side - Image/Design */}
-      <div className="hidden lg:block relative bg-[url('/auth-background.jpg')] bg-cover bg-center">
+      <div className="hidden lg:block relative bg-cover bg-center">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-blue-700 opacity-90"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-12">
           <div className="w-full max-w-md text-center">

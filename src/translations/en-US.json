@@ -1,4 +1,3 @@
-
 {
   "home.hero.tagline": "Effortless Expense Tracking",
   "home.hero.title": "Manage expenses with AI-powered precision",
@@ -91,5 +90,14 @@
   "signup.createAccountButton": "Create account",
   "signup.haveAccount": "Already have an account?",
   "signup.sidebarTitle": "Smart expense tracking at your fingertips",
-  "signup.sidebarDescription": "Easily upload invoices, scan receipts with your camera, and gain insights into your spending patterns."
+  "signup.sidebarDescription": "Easily upload invoices, scan receipts with your camera, and gain insights into your spending patterns.",
+  
+  "signup.errors.nameRequired": "Full name is required",
+  "signup.errors.nameTooShort": "Name must be at least 2 characters",
+  "signup.errors.invalidEmail": "Please enter a valid email",
+  "signup.errors.passwordLength": "Password must be at least 6 characters",
+  "signup.successTitle": "Account created!",
+  "signup.successMessage": "Your account has been successfully created.",
+  "signup.errorTitle": "Registration failed",
+  "signup.errorMessage": "An error occurred during registration. Please try again."
 }

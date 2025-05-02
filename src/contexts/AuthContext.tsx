@@ -1,8 +1,8 @@
-import { toast } from '@/components/ui/use-toast';
+import { useToast } from "@/components/ui/use-toast";
 import axios from 'axios';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:9000';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 interface User {
   id: number;
@@ -14,7 +14,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  signup: (name: string, email: string, password: string) => Promise<void>;
+  signup: (username: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
   token: string | null;
@@ -23,76 +23,72 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const { toast } = useToast();
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Recuperar dados do localStorage ao inicializar
-    const savedUser = localStorage.getItem('user');
-    const savedToken = localStorage.getItem('token');
-    const savedRefreshToken = localStorage.getItem('refreshToken');
+    const initializeAuth = async () => {
+      const savedUser = localStorage.getItem('user');
+      const savedToken = localStorage.getItem('token');
+      const savedRefreshToken = localStorage.getItem('refreshToken');
 
-    if (savedUser && savedToken) {
-      setUser(JSON.parse(savedUser));
-      setToken(savedToken);
-      setRefreshToken(savedRefreshToken);
-      
-      // Configurar o token no axios
-      axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
-    }
-    setLoading(false);
+      if (savedUser && savedToken) {
+        setUser(JSON.parse(savedUser));
+        setToken(savedToken);
+        setRefreshToken(savedRefreshToken);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
+      }
+      setLoading(false);
+    };
+
+    initializeAuth();
   }, []);
 
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
+      console.log(`${API_URL}/login`);
       const response = await axios.post(`${API_URL}/login`, {
-        email,
+        email, 
         password
       });
 
       const { access_token, refresh_token, user } = response.data;
       
-      // Armazenar no state e localStorage
       setUser(user);
       setToken(access_token);
       setRefreshToken(refresh_token);
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', access_token);
       localStorage.setItem('refreshToken', refresh_token);
-      
-      // Configurar o token no axios para requisições futuras
       axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
       
-      toast.success("Login successful");
+      toast({
+        title: "Login realizado",
+        description: "Você entrou com sucesso em sua conta.",
+      });
     } catch (error) {
-      let errorMessage = 'Login failed';
+      let errorMessage = 'Falha no login';
       if (axios.isAxiosError(error)) {
         errorMessage = error.response?.data?.message || error.message;
       }
-      toast.error(errorMessage);
+      toast({
+        title: "Erro",
+        description: errorMessage,
+        variant: "destructive",
+      });
       throw error;
     } finally {
       setLoading(false);
     }
-  };
-
-  const logout = () => {
-    // Limpar state e localStorage
-    setUser(null);
-    setToken(null);
-    setRefreshToken(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
-    
-    // Remover o header do axios
-    delete axios.defaults.headers.common['Authorization'];
-    
-    toast.info("Logged out successfully");
   };
 
   const signup = async (username: string, email: string, password: string) => {
@@ -103,11 +99,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         email,
         password
       });
-  
-      // Se o registro incluir login automático, você pode processar a resposta
-      // como fez no login. Caso contrário, apenas mostre uma mensagem de sucesso.
-      
-      // Exemplo se o backend retornar os tokens diretamente:
+
       if (response.data.access_token) {
         const { access_token, refresh_token, user } = response.data;
         
@@ -119,39 +111,71 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.setItem('refreshToken', refresh_token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
         
-        toast.success("Account created and logged in successfully");
+        toast({
+          title: "Conta criada",
+          description: "Sua conta foi criada com sucesso e você está logado.",
+        });
       } else {
-        // Caso precise fazer login separadamente após o cadastro
-        toast.success("Account created successfully! Please log in.");
+        toast({
+          title: "Conta criada",
+          description: "Sua conta foi criada com sucesso. Por favor faça login.",
+        });
       }
     } catch (error) {
-      let errorMessage = 'Registration failed';
+      let errorMessage = 'Falha no registro';
       if (axios.isAxiosError(error)) {
         errorMessage = error.response?.data?.message || 
                       error.response?.data?.error || 
                       error.message;
       }
-      toast.error(errorMessage);
+      toast({
+        title: "Erro",
+        description: errorMessage,
+        variant: "destructive",
+      });
       throw error;
     } finally {
       setLoading(false);
     }
   };
 
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    setRefreshToken(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    delete axios.defaults.headers.common['Authorization'];
+    
+    toast({
+      title: "Logout",
+      description: "Você saiu da sua conta com sucesso.",
+    });
+  };
+
+  const value = {
+    user,
+    loading,
+    login,
+    signup,
+    logout,
+    isAuthenticated: !!user,
+    token,
+    refreshToken,
+  };
+
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        signup,
-        logout,
-        isAuthenticated: !!user,
-        token,
-        refreshToken,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
+};
+
+export const useAuth = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };
